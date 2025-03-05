@@ -32,4 +32,15 @@ router.put('/update/:id', async(req, res)=>{
     catch(error){
         res.status(500).json({error:error.message});
     }
-})
+});
+
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        await Item.findByIdAndDelete(req.params.id);
+        res.json({ message: "Item deleted successfully" });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+module.exports = router;
